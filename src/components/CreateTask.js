@@ -52,6 +52,8 @@ class CreateTask extends Component {
   dependencyTaskHandler(e) {
     let value = Array.from(e.target.selectedOptions, (option) => option.value);
 
+    
+    
     let dep = [];
 
     value.forEach((element) => {
@@ -106,6 +108,7 @@ class CreateTask extends Component {
       description: "",
       duration: 1,
       availableTask: [],
+      dependencies: [],
     });
 
     this.populateDependencyTask();

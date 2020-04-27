@@ -100,6 +100,7 @@ class CreateProject extends Component {
       projectDescription: "",
       startDate: new Date(),
       availableTask: [],
+      taskViews: [],
     });
 
     this.populateTask();
