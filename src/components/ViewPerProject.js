@@ -273,11 +273,6 @@ class ViewPerProject extends Component {
               </p>
             </Col>
           </Row>
-          <Row>
-            <Col>
-              <Button variant="danger">Close</Button>
-            </Col>
-          </Row>
         </Container>
       </div>
     );
