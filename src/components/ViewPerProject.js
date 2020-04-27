@@ -21,44 +21,42 @@ function Event({ event }) {
         <strong>Information for Task: {event.title}</strong>
       </p>
       <Table striped hover size="sm" responsive>
-          <thead>
-            <tr>
-              <th>Task Type</th>
-              <th>Task ID</th>
-              <th>Task Name</th>
-              <th>Duration in Days</th>
-              <th>Start Date</th>
-              <th>End Date</th>
-              <th>Dependent Tasks</th>
-            </tr>
-          </thead>
+        <thead>
+          <tr>
+            <th>Task Type</th>
+            <th>Task ID</th>
+            <th>Task Name</th>
+            <th>Duration in Days</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Dependent Tasks</th>
+          </tr>
+        </thead>
 
-          <tbody>
-            <tr>
-              <td>{event.task.taskType}</td>
-              <td>{event.task.taskId}</td>
-              <td>{event.task.taskName}</td>
-              <td>{event.task.duration}</td>
-              <td>{event.task.startDate}</td>
-              <td>{event.task.endDate}</td>
-              <td>
-                {event.task.dependencies
-                  ? event.task.dependencies.map((subItem) => (
-                      <p key={subItem.taskId}>
-                        {subItem.taskId} - {subItem.taskName} (
-                        {subItem.startDate} - {subItem.endDate})
-                      </p>
-                    ))
-                  : "None"}
-              </td>
-            </tr>
-          </tbody>
-        </Table>
-      
+        <tbody>
+          <tr>
+            <td>{event.task.taskType}</td>
+            <td>{event.task.taskId}</td>
+            <td>{event.task.taskName}</td>
+            <td>{event.task.duration}</td>
+            <td>{event.task.startDate}</td>
+            <td>{event.task.endDate}</td>
+            <td>
+              {event.task.dependencies
+                ? event.task.dependencies.map((subItem) => (
+                    <p key={subItem.taskId}>
+                      {subItem.taskId} - {subItem.taskName} ({subItem.startDate}{" "}
+                      - {subItem.endDate})
+                    </p>
+                  ))
+                : "None"}
+            </td>
+          </tr>
+        </tbody>
+      </Table>
     </Popover>
   );
 
-  
   return (
     <div>
       <div>
@@ -96,10 +94,7 @@ class ViewPerProject extends Component {
 
   populateProject() {
     let val;
-    let url =
-      "http://" +
-      process.env.REACT_APP_SPRING_BOOT_BASE_PORT +
-      "/rest/project/all/withtasks";
+    let url = "http://" + process.env.REACT_APP_SPRING_BOOT_BASE_PORT + "/rest/project/all/withtasks";
     fetch(url)
       .then((res) => res.json())
       .then((json) => {
@@ -116,10 +111,8 @@ class ViewPerProject extends Component {
       projectId: val,
     });
 
-    let url =
-      "http://" +
-      process.env.REACT_APP_SPRING_BOOT_BASE_PORT +
-      "/rest/scheduler/view/" + val;
+    let url = "http://" + process.env.REACT_APP_SPRING_BOOT_BASE_PORT + "/rest/scheduler/view/" +
+      val;
 
     fetch(url)
       .then((res) => res.json())
@@ -143,7 +136,7 @@ class ViewPerProject extends Component {
           start: new Date(item.startDate),
           end: new Date(item.endDate),
           title: item.taskId + " - " + item.taskName,
-          task: item
+          task: item,
         });
       });
 
@@ -157,8 +150,7 @@ class ViewPerProject extends Component {
   }
 
   refreshComps() {
-
-    let url = 'http://' + process.env.REACT_APP_SPRING_BOOT_BASE_PORT + '/rest/project/all/withtasks';
+    let url = "http://" + process.env.REACT_APP_SPRING_BOOT_BASE_PORT + "/rest/project/all/withtasks";
 
     fetch(url)
       .then((res) => res.json())
@@ -196,7 +188,7 @@ class ViewPerProject extends Component {
                 ))}
               </Form.Control>
             </Col>
-            <Col md={{span: 2}}>
+            <Col md={{ span: 2 }}>
               <Button variant="info" onClick={() => this.refreshComps()}>
                 Refresh
               </Button>

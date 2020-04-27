@@ -5,7 +5,8 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
 import React, { Component } from "react";
-import DatePicker from 'react-date-picker';
+import DatePicker from "react-date-picker";
+
 
 class CreateProject extends Component {
   constructor(props) {
@@ -24,7 +25,7 @@ class CreateProject extends Component {
   }
 
   populateTask() {
-    let url = 'http://' + process.env.REACT_APP_SPRING_BOOT_BASE_PORT + '/rest/task/all';
+    let url = "http://" + process.env.REACT_APP_SPRING_BOOT_BASE_PORT + "/rest/task/all";
     fetch(url)
       .then((res) => res.json())
       .then((json) => {
@@ -42,7 +43,9 @@ class CreateProject extends Component {
     this.setState({ projectDescription: e.target.value });
   }
 
-  onChange = date => {this.setState({ startDate: date })};
+  onChange = (date) => {
+    this.setState({ startDate: date });
+  };
 
   dependencyTaskHandler(e) {
     let value = Array.from(e.target.selectedOptions, (option) => option.value);
@@ -57,8 +60,22 @@ class CreateProject extends Component {
   }
 
   saveProject() {
-    
-    let url = 'http://' + process.env.REACT_APP_SPRING_BOOT_BASE_PORT + '/rest/project/save';
+    if (!this.state.projectName) {
+      alert("Please provide project name!");
+      return;
+    }
+
+    if (!this.state.startDate) {
+      alert("Please provide start date!");
+      return;
+    }
+
+    if (!this.state.taskViews || this.state.taskViews.length === 0) {
+      alert("Please select at least 1 task!");
+      return;
+    }
+
+    let url = "http://" + process.env.REACT_APP_SPRING_BOOT_BASE_PORT + "/rest/project/save";
     fetch(url, {
       method: "post",
       headers: {
@@ -86,7 +103,6 @@ class CreateProject extends Component {
     });
 
     this.populateTask();
-
   }
 
   refreshComps() {
@@ -110,6 +126,7 @@ class CreateProject extends Component {
                 placeholder="Project name"
                 value={this.state.projectName}
                 onChange={(e) => this.projectNameHandler(e)}
+                required
               />
             </Col>
           </Row>
@@ -131,11 +148,11 @@ class CreateProject extends Component {
               <Form.Label>Start Date</Form.Label>
             </Col>
             <Col>
-              <DatePicker 
+              <DatePicker
                 onChange={this.onChange}
                 value={this.state.startDate}
-              >
-              </DatePicker>
+                required
+              ></DatePicker>
             </Col>
           </Row>
           <Row xl>
@@ -149,6 +166,7 @@ class CreateProject extends Component {
                 multiple
                 custom
                 size="lg"
+                required
               >
                 {this.state.availableTask.map((item) => (
                   <option key={item.taskId} value={item.taskId}>

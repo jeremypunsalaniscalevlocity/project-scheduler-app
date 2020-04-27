@@ -27,10 +27,7 @@ class UpdateTask extends Component {
 
   populateTasks() {
     let val;
-    let url =
-      "http://" +
-      process.env.REACT_APP_SPRING_BOOT_BASE_PORT +
-      "/rest/task/all";
+    let url = "http://" + process.env.REACT_APP_SPRING_BOOT_BASE_PORT + "/rest/task/all";
     fetch(url)
       .then((res) => res.json())
       .then((json) => {
@@ -43,10 +40,7 @@ class UpdateTask extends Component {
   }
 
   populateTasksWithVal(val) {
-    let url =
-      "http://" +
-      process.env.REACT_APP_SPRING_BOOT_BASE_PORT +
-      "/rest/task/all";
+    let url = "http://" + process.env.REACT_APP_SPRING_BOOT_BASE_PORT + "/rest/task/all";
 
     fetch(url)
       .then((res) => res.json())
@@ -103,11 +97,7 @@ class UpdateTask extends Component {
       taskId: val,
     });
 
-    let url =
-      "http://" +
-      process.env.REACT_APP_SPRING_BOOT_BASE_PORT +
-      "/rest/task/id/" +
-      val;
+    let url = "http://" + process.env.REACT_APP_SPRING_BOOT_BASE_PORT + "/rest/task/id/" + val;
 
     fetch(url)
       .then((res) => res.json())
@@ -129,11 +119,7 @@ class UpdateTask extends Component {
         });
       });
 
-    let url1 =
-      "http://" +
-      process.env.REACT_APP_SPRING_BOOT_BASE_PORT +
-      "/rest/task/eligible/" +
-      val;
+    let url1 = "http://" + process.env.REACT_APP_SPRING_BOOT_BASE_PORT + "/rest/task/eligible/" + val;
 
     fetch(url1)
       .then((res) => res.json())
@@ -150,11 +136,12 @@ class UpdateTask extends Component {
   }
 
   saveTask() {
+    if (!this.state.taskName) {
+      alert("Please provide task name!");
+      return;
+    }
 
-    let url =
-      "http://" +
-      process.env.REACT_APP_SPRING_BOOT_BASE_PORT +
-      "/rest/task/save";
+    let url = "http://" + process.env.REACT_APP_SPRING_BOOT_BASE_PORT + "/rest/task/save";
 
     fetch(url, {
       method: "post",
@@ -221,6 +208,7 @@ class UpdateTask extends Component {
                 placeholder="Task Name"
                 value={this.state.taskName}
                 onChange={(e) => this.taskNameHandler(e)}
+                required
               />
             </Col>
           </Row>

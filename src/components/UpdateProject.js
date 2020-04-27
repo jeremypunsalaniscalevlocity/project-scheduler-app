@@ -61,7 +61,8 @@ class UpdateProject extends Component {
       projectId: val,
     });
 
-    let url = 'http://' + process.env.REACT_APP_SPRING_BOOT_BASE_PORT + '/rest/project/id/' + val;
+    let url = "http://" + process.env.REACT_APP_SPRING_BOOT_BASE_PORT + "/rest/project/id/" +
+      val;
 
     fetch(url)
       .then((res) => res.json())
@@ -86,7 +87,7 @@ class UpdateProject extends Component {
 
   populateProject() {
     let val;
-    let url = 'http://' + process.env.REACT_APP_SPRING_BOOT_BASE_PORT + '/rest/project/all';
+    let url = "http://" + process.env.REACT_APP_SPRING_BOOT_BASE_PORT + "/rest/project/all";
     fetch(url)
       .then((res) => res.json())
       .then((json) => {
@@ -99,8 +100,7 @@ class UpdateProject extends Component {
   }
 
   populateProjectWithVal(val) {
-
-    let url = 'http://' + process.env.REACT_APP_SPRING_BOOT_BASE_PORT + '/rest/project/all';
+    let url = "http://" + process.env.REACT_APP_SPRING_BOOT_BASE_PORT + "/rest/project/all";
 
     fetch(url)
       .then((res) => res.json())
@@ -113,7 +113,7 @@ class UpdateProject extends Component {
   }
 
   populateTasks() {
-    let url = 'http://' + process.env.REACT_APP_SPRING_BOOT_BASE_PORT + '/rest/task/all';
+    let url = "http://" + process.env.REACT_APP_SPRING_BOOT_BASE_PORT + "/rest/task/all";
     fetch(url)
       .then((res) => res.json())
       .then((json) => {
@@ -124,7 +124,22 @@ class UpdateProject extends Component {
   }
 
   saveProject() {
-    let url = 'http://' + process.env.REACT_APP_SPRING_BOOT_BASE_PORT + '/rest/project/save';
+    if (!this.state.projectName) {
+      alert("Please provide project name!");
+      return;
+    }
+
+    if (!this.state.startDate) {
+      alert("Please provide start date!");
+      return;
+    }
+
+    if (!this.state.taskViews || this.state.taskViews.length === 0) {
+      alert("Please select at least 1 task!");
+      return;
+    }
+
+    let url ="http://" + process.env.REACT_APP_SPRING_BOOT_BASE_PORT + "/rest/project/save";
     fetch(url, {
       method: "post",
       headers: {
@@ -192,6 +207,7 @@ class UpdateProject extends Component {
                 placeholder="Project name"
                 value={this.state.projectName}
                 onChange={(e) => this.projectNameHandler(e)}
+                required
               />
             </Col>
           </Row>
@@ -217,6 +233,7 @@ class UpdateProject extends Component {
                 onChange={this.onChange}
                 value={this.state.startDate}
                 format="y-MM-dd"
+                required
               ></DatePicker>
             </Col>
           </Row>
@@ -232,6 +249,7 @@ class UpdateProject extends Component {
                 custom
                 size="lg"
                 value={this.state.selectedTasks}
+                required
               >
                 {this.state.availableTask.map((item) => (
                   <option key={item.taskId} value={item.taskId}>

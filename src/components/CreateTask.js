@@ -6,7 +6,11 @@ import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
 import React, { Component } from "react";
 
+
+
+
 class CreateTask extends Component {
+  
   constructor(props) {
     super(props);
     this.state = {
@@ -23,7 +27,7 @@ class CreateTask extends Component {
   }
 
   populateDependencyTask() {
-    let url = 'http://' + process.env.REACT_APP_SPRING_BOOT_BASE_PORT + '/rest/task/all';
+    let url = "http://" + process.env.REACT_APP_SPRING_BOOT_BASE_PORT + "/rest/task/all";
     fetch(url)
       .then((res) => res.json())
       .then((json) => {
@@ -72,7 +76,12 @@ class CreateTask extends Component {
   }
 
   saveTask() {
-    let url = 'http://' + process.env.REACT_APP_SPRING_BOOT_BASE_PORT + '/rest/task/save';
+    if (!this.state.taskName) {
+      alert("Please provide task name!");
+      return;
+    }
+
+    let url = "http://" + process.env.REACT_APP_SPRING_BOOT_BASE_PORT + "/rest/task/save";
     fetch(url, {
       method: "post",
       headers: {
@@ -123,6 +132,7 @@ class CreateTask extends Component {
                 placeholder="Task Name"
                 value={this.state.taskName}
                 onChange={(e) => this.taskNameHandler(e)}
+                required
               />
             </Col>
           </Row>
