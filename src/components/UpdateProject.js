@@ -6,6 +6,7 @@ import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
 import React, { Component } from "react";
 import DatePicker from "react-date-picker";
+import moment from "moment";
 
 class UpdateProject extends Component {
   constructor(props) {
@@ -150,7 +151,7 @@ class UpdateProject extends Component {
         projectId: this.state.projectId,
         projectName: this.state.projectName,
         projectDescription: this.state.projectDescription,
-        startDate: this.state.startDate,
+        startDate: moment(this.state.startDate).format("YYYY-MM-DD"),
         taskViews: this.state.taskViews,
       }),
     })
@@ -232,8 +233,6 @@ class UpdateProject extends Component {
               <DatePicker
                 onChange={this.onChange}
                 value={this.state.startDate}
-                format="y-MM-dd"
-                required
               ></DatePicker>
             </Col>
           </Row>

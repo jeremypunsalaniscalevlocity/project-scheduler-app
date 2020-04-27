@@ -6,6 +6,7 @@ import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
 import React, { Component } from "react";
 import DatePicker from "react-date-picker";
+import moment from "moment";
 
 
 class CreateProject extends Component {
@@ -85,7 +86,7 @@ class CreateProject extends Component {
       body: JSON.stringify({
         projectName: this.state.projectName,
         projectDescription: this.state.projectDescription,
-        startDate: this.state.startDate,
+        startDate: moment(this.state.startDate).format("YYYY-MM-DD"),
         taskViews: this.state.taskViews,
       }),
     })
