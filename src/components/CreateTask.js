@@ -27,7 +27,7 @@ class CreateTask extends Component {
   }
 
   populateDependencyTask() {
-    let url = "http://" + process.env.REACT_APP_SPRING_BOOT_BASE_PORT + "/rest/task/all";
+    let url = process.env.REACT_APP_SPRING_BOOT_BASE_PORT + "/rest/task/all";
     fetch(url)
       .then((res) => res.json())
       .then((json) => {
@@ -81,7 +81,7 @@ class CreateTask extends Component {
       return;
     }
 
-    let url = "http://" + process.env.REACT_APP_SPRING_BOOT_BASE_PORT + "/rest/task/save";
+    let url = process.env.REACT_APP_SPRING_BOOT_BASE_PORT + "/rest/task/save";
     fetch(url, {
       method: "post",
       headers: {

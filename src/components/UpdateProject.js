@@ -61,7 +61,7 @@ class UpdateProject extends Component {
       projectId: val,
     });
 
-    let url = "http://" + process.env.REACT_APP_SPRING_BOOT_BASE_PORT + "/rest/project/id/" +
+    let url = process.env.REACT_APP_SPRING_BOOT_BASE_PORT + "/rest/project/id/" +
       val;
 
     fetch(url)
@@ -87,7 +87,7 @@ class UpdateProject extends Component {
 
   populateProject() {
     let val;
-    let url = "http://" + process.env.REACT_APP_SPRING_BOOT_BASE_PORT + "/rest/project/all";
+    let url = process.env.REACT_APP_SPRING_BOOT_BASE_PORT + "/rest/project/all";
     fetch(url)
       .then((res) => res.json())
       .then((json) => {
@@ -100,7 +100,7 @@ class UpdateProject extends Component {
   }
 
   populateProjectWithVal(val) {
-    let url = "http://" + process.env.REACT_APP_SPRING_BOOT_BASE_PORT + "/rest/project/all";
+    let url = process.env.REACT_APP_SPRING_BOOT_BASE_PORT + "/rest/project/all";
 
     fetch(url)
       .then((res) => res.json())
@@ -113,7 +113,7 @@ class UpdateProject extends Component {
   }
 
   populateTasks() {
-    let url = "http://" + process.env.REACT_APP_SPRING_BOOT_BASE_PORT + "/rest/task/all";
+    let url = process.env.REACT_APP_SPRING_BOOT_BASE_PORT + "/rest/task/all";
     fetch(url)
       .then((res) => res.json())
       .then((json) => {
@@ -139,7 +139,7 @@ class UpdateProject extends Component {
       return;
     }
 
-    let url ="http://" + process.env.REACT_APP_SPRING_BOOT_BASE_PORT + "/rest/project/save";
+    let url = process.env.REACT_APP_SPRING_BOOT_BASE_PORT + "/rest/project/save";
     fetch(url, {
       method: "post",
       headers: {

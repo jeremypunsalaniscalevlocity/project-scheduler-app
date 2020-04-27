@@ -94,7 +94,7 @@ class ViewPerProject extends Component {
 
   populateProject() {
     let val;
-    let url = "http://" + process.env.REACT_APP_SPRING_BOOT_BASE_PORT + "/rest/project/all/withtasks";
+    let url = process.env.REACT_APP_SPRING_BOOT_BASE_PORT + "/rest/project/all/withtasks";
     fetch(url)
       .then((res) => res.json())
       .then((json) => {
@@ -111,7 +111,7 @@ class ViewPerProject extends Component {
       projectId: val,
     });
 
-    let url = "http://" + process.env.REACT_APP_SPRING_BOOT_BASE_PORT + "/rest/scheduler/view/" +
+    let url = process.env.REACT_APP_SPRING_BOOT_BASE_PORT + "/rest/scheduler/view/" +
       val;
 
     fetch(url)
@@ -150,7 +150,7 @@ class ViewPerProject extends Component {
   }
 
   refreshComps() {
-    let url = "http://" + process.env.REACT_APP_SPRING_BOOT_BASE_PORT + "/rest/project/all/withtasks";
+    let url = process.env.REACT_APP_SPRING_BOOT_BASE_PORT + "/rest/project/all/withtasks";
 
     fetch(url)
       .then((res) => res.json())

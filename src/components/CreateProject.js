@@ -25,7 +25,7 @@ class CreateProject extends Component {
   }
 
   populateTask() {
-    let url = "http://" + process.env.REACT_APP_SPRING_BOOT_BASE_PORT + "/rest/task/all";
+    let url = process.env.REACT_APP_SPRING_BOOT_BASE_PORT + "/rest/task/all";
     fetch(url)
       .then((res) => res.json())
       .then((json) => {
@@ -75,7 +75,7 @@ class CreateProject extends Component {
       return;
     }
 
-    let url = "http://" + process.env.REACT_APP_SPRING_BOOT_BASE_PORT + "/rest/project/save";
+    let url = process.env.REACT_APP_SPRING_BOOT_BASE_PORT + "/rest/project/save";
     fetch(url, {
       method: "post",
       headers: {
