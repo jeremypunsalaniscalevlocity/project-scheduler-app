@@ -16,7 +16,7 @@ class CreateTask extends Component {
     this.state = {
       taskName: "",
       description: "",
-      duration: 0,
+      duration: 1,
       availableTask: [],
       dependencies: [],
     };
@@ -163,6 +163,7 @@ class CreateTask extends Component {
                 custom
                 size="sm"
                 value={this.state.duration}
+                default={1}
               >
                 {this.buildDurationOptions()}
               </Form.Control>

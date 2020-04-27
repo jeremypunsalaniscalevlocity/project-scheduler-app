@@ -13,7 +13,7 @@ class UpdateTask extends Component {
       taskId: 0,
       taskName: "",
       description: "",
-      duration: 0,
+      duration: 1,
       availableTask: [],
       eligibleTasks: [],
       selectedTasks: [],
